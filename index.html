@@ -4,37 +4,63 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ثقف | الرئيسية</title>
-  <!-- الاستايل العام -->
+
+  <!-- خط عربي رسمي -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ✅ SRCA رسمي + بدون أسود + الكروت بجوار بعض + العنوان فوق بدون كرت -->
+  <style>
+   
+  </style>
 </head>
 
 <body>
   <!-- ✅ الهيدر سيتم حقنه من header.js -->
   <div id="appHeader"></div>
 
-  <main>  
-  
+  <main class="wrap">
+
     <!-- ================= USER TYPES ================= -->
     <section class="thqafNajizHero" aria-label="بوابة الدخول">
 
+      <!-- ✅ العنوان فوق بدون كرت -->
+      <div class="heroTitle">
+        <div>
+          <h1>بوابة ثقف</h1>
+          <h2>بوابة تعنى بالدورات والمبادرات الإسعافية</h2>
+          <p>“ سهلت بوابة ثقف طلبات الدورات التدريبية لجميع فئات المجتمع عبر بوابة موحدة ”</p>
+        </div>
+        <div class="heroBadge" aria-label="منصة رسمية">
+          <span class="dot" aria-hidden="true"></span>
+          THQAF
+        </div>
+      </div>
+
+      <!-- ✅ الكروت بجوار بعض -->
       <div class="cardsRail" aria-label="خيارات الدخول">
 
         <!-- 1 -->
         <article class="nCard lawyers">
           <header class="nHead">
             <div class="nBrand">
-              <img class="nLogo" src="/assets/img/hero-logo.png" alt="ثقف">
+              
               <span class="nSub">edu | تعليم</span>
             </div>
-            <div class="nTick"></div>
+            <div class="nTick" aria-hidden="true"></div>
           </header>
 
           <div class="nBody">
             <h3>ثقف مدارس وجامعات</h3>
-            <p>تسجيل الدخول للمدارس والجامعات .</p>
-            <img class="nIllu" src="/assets/img/edu.png" alt="">
+            <p>تسجيل الدخول للمدارس والجامعات.</p>
+
+            <div class="illuWrap">
+              <img class="nIllu" src="assets/img/edu.png" alt="" role="presentation" loading="lazy" decoding="async" data-fallback="illu">
+            </div>
+
             <div class="nActions">
-              <button type="button" class="nBtn primary"
-                      onclick="window.location.href='login-edu.html'">
+              <button type="button" class="nBtn primary" onclick="window.location.href='login-edu.html'">
                 تسجيل الدخول <span class="arr">←</span>
               </button>
             </div>
@@ -45,19 +71,21 @@
         <article class="nCard gov">
           <header class="nHead">
             <div class="nBrand">
-              <img class="nLogo" src="/assets/img/hero-logo.png" alt="ثقف">
               <span class="nSub">Gov. | حكومة</span>
             </div>
-            <div class="nTick"></div>
+            <div class="nTick" aria-hidden="true"></div>
           </header>
 
           <div class="nBody">
             <h3>ثقف جهات حكومية</h3>
             <p>تسجيل الدخول لممثلي الجهات الحكومية والقطاعات.</p>
-            <img class="nIllu dotted" src="/assets/img/gov.jpg" alt="">
+
+            <div class="illuWrap">
+              <img class="nIllu" src="assets/img/gov.jpg" alt="" role="presentation" loading="lazy" decoding="async" data-fallback="illu">
+            </div>
+
             <div class="nActions">
-              <button type="button" class="nBtn primary"
-                      onclick="window.location.href='login-gov.html'">
+              <button type="button" class="nBtn primary" onclick="window.location.href='login-gov.html'">
                 تسجيل الدخول <span class="arr">←</span>
               </button>
             </div>
@@ -68,19 +96,21 @@
         <article class="nCard biz">
           <header class="nHead">
             <div class="nBrand">
-              <img class="nLogo" src="/assets/img/hero-logo.png" alt="ثقف">
               <span class="nSub">Business | أعمال</span>
             </div>
-            <div class="nTick"></div>
+            <div class="nTick" aria-hidden="true"></div>
           </header>
 
           <div class="nBody">
             <h3>ثقف أعمال</h3>
-            <p>تسجيل الدخول ممثلي المنشآت والشركات.</p>
-            <img class="nIllu skyline" src="/assets/img/Business.jpg" alt="">
+            <p>تسجيل الدخول لممثلي المنشآت والشركات.</p>
+
+            <div class="illuWrap">
+              <img class="nIllu" src="assets/img/business.jpg" alt="" role="presentation" loading="lazy" decoding="async" data-fallback="illu">
+            </div>
+
             <div class="nActions">
-              <button type="button" class="nBtn primary"
-                      onclick="window.location.href='login-biz.html'">
+              <button type="button" class="nBtn primary" onclick="window.location.href='login-biz.html'">
                 تسجيل الدخول <span class="arr">←</span>
               </button>
             </div>
@@ -91,19 +121,21 @@
         <article class="nCard per">
           <header class="nHead">
             <div class="nBrand">
-              <img class="nLogo" src="/assets/img/hero-logo.png" alt="ثقف">
-              <span class="nSub">Pep | أفراد</span>
+              <span class="nSub">People | أفراد</span>
             </div>
-            <div class="nTick"></div>
+            <div class="nTick" aria-hidden="true"></div>
           </header>
 
           <div class="nBody">
             <h3>ثقف أفراد</h3>
-            <p>تسجيل دخول الأفراد ومشاهدة الدورات المسجل بها ومعاينة الشهادات</p>
-            <img class="nIllu skylineper" src="/assets/img/pepole.jpg" alt="">
+            <p>تسجيل دخول الأفراد ومشاهدة الدورات المسجل بها ومعاينة الشهادات.</p>
+
+            <div class="illuWrap">
+              <img class="nIllu" src="/assets/img/pepole.jpg" alt="" role="presentation" loading="lazy" decoding="async" data-fallback="illu">
+            </div>
+
             <div class="nActions">
-              <button type="button" class="nBtn primary"
-                      onclick="window.location.href='login-person.html'">
+              <button type="button" class="nBtn primary" onclick="window.location.href='login-person.html'">
                 تسجيل الدخول <span class="arr">←</span>
               </button>
             </div>
@@ -111,52 +143,46 @@
         </article>
 
       </div>
-
-      <div class="heroText">
-        <h1>بوابة ثقف</h1>
-        <h2>بوابة تعني بالدورات والمبادرات الإسعافية</h2>
-        <p class="">
-          “ سهلت بوابة ثقف طلبات الدورات التدريبية لجميع فئات المجتمع عبر بوابة موحدة ”
-        </p>
-      </div>
-
-      <div class="bgDots" aria-hidden="true"></div>
     </section>
 
     <!-- ================= STATS ================= -->
-    <section class="stats">
-      <div class="stat">
-        <b>83,915</b>
-        <span>دورات تدريبية خلال هذا الشهر</span>
-      </div>
-      <div class="stat">
-        <b>32,218</b>
-        <span>طلبات تم إنجازها</span>
-      </div>
-      <div class="stat">
-        <b>135,629</b>
-        <span>شهادات إلكترونية صادرة</span>
+    <section class="stats" aria-label="إحصائيات">
+      <div class="statsGrid">
+        <div class="stat">
+          <b>83,915</b>
+          <span>دورات تدريبية خلال هذا الشهر</span>
+        </div>
+        <div class="stat">
+          <b>32,218</b>
+          <span>طلبات تم إنجازها</span>
+        </div>
+        <div class="stat">
+          <b>135,629</b>
+          <span>شهادات إلكترونية صادرة</span>
+        </div>
       </div>
     </section>
 
     <!-- ================= FAQ ================= -->
-    <section class="faq">
-      <h3>الأسئلة الشائعة</h3>
+    <section class="faq" aria-label="الأسئلة الشائعة">
+      <div class="faqBox">
+        <h3>الأسئلة الشائعة</h3>
 
-      <details>
-        <summary>كيف يمكن التسجيل في الدورات؟</summary>
-        <p>يمكن التسجيل عبر اختيار الدورة ثم الضغط على بدء الخدمة.</p>
-      </details>
+        <details>
+          <summary>كيف يمكن التسجيل في الدورات؟</summary>
+          <p>يمكن التسجيل عبر اختيار الدورة ثم الضغط على بدء الخدمة.</p>
+        </details>
 
-      <details>
-        <summary>هل الشهادات معتمدة؟</summary>
-        <p>نعم، جميع الشهادات إلكترونية ومعتمدة.</p>
-      </details>
+        <details>
+          <summary>هل الشهادات معتمدة؟</summary>
+          <p>نعم، جميع الشهادات إلكترونية ومعتمدة.</p>
+        </details>
 
-      <details>
-        <summary>هل يوجد دورات للأطفال؟</summary>
-        <p>نعم، مثل مبادرة المسعف الصغير.</p>
-      </details>
+        <details>
+          <summary>هل يوجد دورات للأطفال؟</summary>
+          <p>نعم، مثل مبادرة المسعف الصغير.</p>
+        </details>
+      </div>
     </section>
 
   </main>
@@ -165,7 +191,35 @@
   <div id="appFooter"></div>
 
   <!-- ✅ ربط صفحة index بملف الهيدر -->
-  <script src="/assets/js/header.js" defer></script>
+  <script src="assets/js/header.js" defer></script>
+
+  <!-- ✅ فallback مضمون للصور إذا كان الملف غير موجود -->
+  <script>
+    (function () {
+      const svg = (label) =>
+        "data:image/svg+xml;charset=UTF-8," +
+        encodeURIComponent(
+          `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360">
+            <rect width="100%" height="100%" fill="#F3F6FA"/>
+            <rect x="24" y="24" width="592" height="312" rx="18" fill="#ffffff" stroke="#E6EAF0"/>
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+              font-family="Tahoma, Arial" font-size="24" fill="#64748B">${label}</text>
+          </svg>`
+        );
+
+      const placeholders = {
+        logo: svg("THQAF Logo"),
+        illu: svg("Image Not Found"),
+      };
+
+      document.querySelectorAll("img[data-fallback]").forEach((img) => {
+        img.addEventListener("error", () => {
+          const kind = img.getAttribute("data-fallback") || "illu";
+          img.src = placeholders[kind] || placeholders.illu;
+        }, { once: true });
+      });
+    })();
+  </script>
 
 </body>
 </html>

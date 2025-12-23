@@ -1,25 +1,141 @@
-<style>
-:root{
-  --footer-h: 64px;
-}
+<!-- ✅ Footer رسمي (RTL) مشابه للصورة — يعتمد على Tabler Icons (ti) إن كانت موجودة -->
+<footer class="s-footer" dir="rtl" aria-label="تذييل الموقع">
+  <div class="s-footer__wrap">
 
-main{
-  padding-bottom: calc(var(--footer-h) + 20px);
-}
+    <div class="s-footer__grid" role="navigation" aria-label="روابط التذييل">
 
-</style>
-<footer class="thqafFooter" role="contentinfo">
-  <div class="wrap">
-    <div class="footerRight">
-      <span>© <span id="year"></span> ثقف</span>
-      <span class="dot" aria-hidden="true"></span>
-      <span>بوابة ثقف إدارة الدورات التدريبية</span>
+      <!-- العمود 1 -->
+      <section class="s-footer__col" aria-label="وسائل التواصل الاجتماعي">
+        <h3 class="s-footer__title">وسائل التواصل الاجتماعي</h3>
+        <div class="s-footer__divider"></div>
+
+        <div class="s-footer__icons" aria-label="روابط التواصل">
+          <a class="s-footer__icon" href="#" aria-label="يوتيوب"><i class="ti ti-brand-youtube"></i></a>
+          <a class="s-footer__icon" href="#" aria-label="لينكدإن"><i class="ti ti-brand-linkedin"></i></a>
+          <a class="s-footer__icon" href="#" aria-label="إنستغرام"><i class="ti ti-brand-instagram"></i></a>
+          <a class="s-footer__icon" href="#" aria-label="X"><i class="ti ti-brand-x"></i></a>
+        </div>
+
+        <h3 class="s-footer__title s-footer__mt">أدوات الوصول</h3>
+        <div class="s-footer__divider"></div>
+
+        <div class="s-footer__icons" aria-label="أدوات الوصول">
+          <button class="s-footer__icon" type="button" aria-label="تكبير"><i class="ti ti-zoom-in"></i></button>
+          <button class="s-footer__icon" type="button" aria-label="تصغير"><i class="ti ti-zoom-out"></i></button>
+          <button class="s-footer__icon" type="button" aria-label="قارئ شاشة"><i class="ti ti-ear"></i></button>
+          <button class="s-footer__icon" type="button" aria-label="تحويل النص إلى صوت"><i class="ti ti-microphone-2"></i></button>
+          <button class="s-footer__icon" type="button" aria-label="إمكانية الوصول"><i class="ti ti-wheelchair"></i></button>
+        </div>
+
+        <h3 class="s-footer__title s-footer__mt">حمّل تطبيقات الجوال</h3>
+        <div class="s-footer__divider"></div>
+
+        <div class="s-footer__stores" aria-label="متاجر التطبيقات">
+          <a class="s-footer__store" href="#" aria-label="Google Play">
+            <i class="ti ti-brand-google-play"></i>
+            <span>
+              <small>تحميل من</small>
+              <b>Google Play</b>
+            </span>
+          </a>
+          <a class="s-footer__store" href="#" aria-label="App Store">
+            <i class="ti ti-brand-apple"></i>
+            <span>
+              <small>تحميل من</small>
+              <b>App Store</b>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- العمود 2 -->
+      <section class="s-footer__col" aria-label="روابط مهمة">
+        <h3 class="s-footer__title">روابط مهمة</h3>
+        <div class="s-footer__divider"></div>
+
+        <ul class="s-footer__list">
+          <li><a href="https://mutaaheb.srca.org.sa/"><i class="ti ti-external-link"></i>منصة متأهب</a></li>
+          <li><a href="https://srcavolunteer.srca.org.sa/#!/ar/home"><i class="ti ti-external-link"></i> منصة تطوع هيئة الهلال الاحمر</a></li>
+          <li><a href="https://www.srca.org.sa/"><i class="ti ti-external-link"></i>الموقع الرسمي لهيئة الهلال الأحمر السعودي</a></li>
+        </ul>
+      </section>
+
+      <!-- العمود 3 -->
+      <section class="s-footer__col" aria-label="الدعم والمساعدة">
+        <h3 class="s-footer__title">الدعم والمساعدة</h3>
+        <div class="s-footer__divider"></div>
+
+        <ul class="s-footer__list">
+          <li><a href="#">اتصل بنا</a></li>
+          <li><a href="#">الشكاوى والاقتراحات</a></li>
+          <li><a href="#">الأسئلة الشائعة</a></li>
+          <li><a href="#">المركز الموحد</a></li>
+          <li><a href="#">إمكانية الوصول</a></li>
+        </ul>
+      </section>
+
+      <!-- العمود 4 -->
+      <section class="s-footer__col" aria-label="التواصل الإعلامي">
+        <h3 class="s-footer__title">التواصل الإعلامي</h3>
+        <div class="s-footer__divider"></div>
+
+        <ul class="s-footer__list">
+          <li><a href="#">الأخبار والإعلانات</a></li>
+          <!--<li><a href="#">الإصدارات</a></li>
+          <li><a href="#">المجلة</a></li>
+          <li><a href="#">الفعاليات</a></li>
+          <li><a href="#">هوية الجهة</a></li>-->
+        </ul>
+      </section>
+
+      <!-- العمود 5 -->
+      <section class="s-footer__col" aria-label="الجهة">
+        <h3 class="s-footer__title">الجهة</h3>
+        <div class="s-footer__divider"></div>
+
+        <ul class="s-footer__list">
+          <li><a href="#">من نحن؟</a></li>
+          <!--<li><a href="#"><b>انضم إلينا</b></a></li>
+          <li><a href="#">الفوترة الإلكترونية</a></li>
+          <li><a href="#">المشاركة الإلكترونية</a></li>
+          <li><a href="#">البيانات المفتوحة</a></li>
+          <li><a href="#">سياسة أمن المعلومات</a></li>
+          <li><a href="#">سياسة إخلاء المسؤولية</a></li>
+          <li><a href="#">اتفاقية مستوى الخدمة</a></li>
+          <li><a href="#">ميثاق المتعاملين</a></li>-->
+        </ul>
+      </section>
+
     </div>
 
-    <div class="footerLeft">
-      <a class="footerLink" href="#">سياسة الخصوصية</a>
-      <a class="footerLink" href="#">الشروط</a>
-      <a class="footerLink" href="#">الدعم</a>
+    <!-- شريط روابط أسفل الأعمدة -->
+    <div class="s-footer__subbar" aria-label="روابط سفلية">
+      <a href="#">سياسة الخصوصية</a>
+      <span class="s-footer__dot">•</span>
+      <a href="#">أمن المعلومات</a>
+      <span class="s-footer__dot">•</span>
+      <a href="#">خريطة الموقع</a>
     </div>
+
+    <!-- المنطقة السفلية: شعارات + حقوق -->
+    <div class="s-footer__bottom">
+      <div class="s-footer__logos" aria-label="الشعارات">
+        <!-- بدّل المسارات حسب مشروعك -->
+        <img src="assets/img/hero-logo.png" alt="شعار الجهة" loading="lazy">
+       <!-- <img src="assets/img/vision2030.png" alt="رؤية السعودية 2030" loading="lazy">-->
+      </div>
+
+      <div class="s-footer__copy" aria-label="حقوق النشر">
+        <p><b>جميع الحقوق محفوظة © 2025</b></p>
+        <p>تم تطويره وصيانته بواسطة  مـرتـكـز | MORTQZ</p>
+      </div>
+    </div>
+
   </div>
+
+  <!-- زر عائم (اختياري) مثل الدائرة أسفل يسار الصورة -->
+  <button class="s-footer__float" type="button" aria-label="إعدادات الوصول السريع">
+    <span class="s-footer__kebab" aria-hidden="true"></span>
+  </button>
 </footer>
+

@@ -4,103 +4,56 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- ✅ Tabler Webfont (ثبّت النسخة) -->
-  <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
-  <link rel="stylesheet" href="/assets/css/style.css" />
   <!-- Tabler Icons -->
   <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 
   <title>ثقف | الرئيسية</title>
 
-  <!-- ✅ (إضافة فقط) ستايل مودل تسجيل الدخول بدون Bootstrap -->
+  <!-- ✅ رسمي + ألوان الهلال الأحمر (أحمر/أبيض/رمادي فاتح) بدون الأسود + الحفاظ على القوائم -->
   <style>
-    .admin-modal-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.45);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-    }
-    .admin-modal-overlay.active{display:flex;}
 
-    .admin-modal{
-      width:100%;
-      max-width:420px;
-      background:#fff;
-      border-radius:14px;
-      padding:22px;
-      position:relative;
-      font-family:"Tajawal", system-ui, sans-serif;
-      animation:adminFade .25s ease;
-    }
-    @keyframes adminFade{
-      from{opacity:0; transform:translateY(15px)}
-      to{opacity:1; transform:translateY(0)}
-    }
-
-    .admin-close{
-      position:absolute;
-      top:10px;
-      inset-inline-start:10px;
-      background:none;
-      border:none;
-      font-size:22px;
-      cursor:pointer;
-      line-height:1;
-    }
-    .admin-modal h3{
-      margin:0 0 14px;
-      text-align:center;
-      font-weight:800;
-    }
-    .admin-field{margin-bottom:12px;}
-    .admin-field label{
-      display:block;
-      font-size:13px;
-      margin-bottom:6px;
-    }
-    .admin-field input{
-      width:100%;
-      padding:11px 12px;
-      border-radius:10px;
-      border:1px solid #ddd;
-      font-family:"Tajawal", system-ui, sans-serif;
-      font-size:14px;
-    }
-    .admin-actions{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
-    }
-    .admin-actions button{
-      flex:1;
-      padding:10px;
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      font-family:"Tajawal", system-ui, sans-serif;
-      font-weight:700;
-    }
-    .admin-login-btn{background:#7b0012;color:#fff;}
-    .admin-cancel-btn{background:#eee;}
   </style>
 </head>
 
 <body data-page="home">
 
 <header class="header" aria-label="هيدر الموقع">
+
+  <!-- شريط علوي رسمي -->
+  <div class="topbar" aria-label="شريط معلومات علوي">
+    <div class="wrap">
+      <div class="row">
+        <div class="meta">
+          <span><i class="ti ti-time" aria-hidden="true"></i> الوقت الأن 23:52 مساءاً</span>
+        </div>
+
+        <div class="mini-actions">
+          <button class="mini-btn" type="button" id="quickSupport">
+            <i class="ti ti-headset" aria-hidden="true"></i>
+            مركز المساعدة
+          </button>
+          <button class="mini-btn" type="button" id="quickLang" aria-label="اللغة">
+            <i class="ti ti-world" aria-hidden="true"></i>
+            العربية
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- صف الهوية -->
   <div class="top">
     <div class="wrap">
       <div class="row">
         <a class="brand" href="index.html" aria-label="العودة إلى الرئيسية">
           <div class="logo">
-            <img src="/assets/img/logostraid2.png" alt="شعار بوابة ثقف" loading="lazy">
+            <img src="assets/img/logostraid2.png" alt="شعار بوابة ثقف" loading="lazy" decoding="async">
           </div>
           <div class="stack">
             <b>ثقف</b>
@@ -110,13 +63,11 @@
 
         <div class="search" role="search" aria-label="بحث سريع">
           <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 21l-4.3-4.3m1.3-5.2a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+           
           </svg>
           <input id="globalSearch" type="search" placeholder="بحث سريع..." autocomplete="off" />
         </div>
 
-        <!-- ✅ نفس زرّك (فقط حذفنا href لأنه غير صالح للـ button) -->
         <button class="login" type="button" id="loginBtn">تسجيل دخول الإدارة</button>
 
         <button class="hamburger" id="hamburger" type="button"
@@ -125,6 +76,7 @@
     </div>
   </div>
 
+  <!-- القوائم -->
   <nav class="nav" aria-label="القائمة الرئيسية">
     <div class="wrap">
       <div class="row">
@@ -134,7 +86,6 @@
             <span>الرئيسية</span>
           </a>
 
-          <!-- الخدمات -->
           <a class="link" href="servise.html" data-page="services">
             <i class="ti ti-category" aria-hidden="true"></i>
             <span>الدورات والمبادرات</span>
@@ -142,7 +93,7 @@
 
           <!-- الدورات التدريبية -->
           <div class="dropdown" id="coursesDropdown">
-            <button class="dropbtn" id="coursesBtn" type="button" aria-controls="coursesMenu">
+            <button class="dropbtn" id="coursesBtn" type="button" aria-controls="coursesMenu" aria-expanded="false">
               <i class="ti ti-book" aria-hidden="true"></i>
               <span>إدارة الدورات التدريبية</span>
               <i class="ti ti-chevron-down" aria-hidden="true"></i>
@@ -190,7 +141,7 @@
 
           <!-- الدعم الفني -->
           <div class="dropdown" id="supportDropdown">
-            <button class="dropbtn" id="supportBtn" type="button" aria-controls="supportMenu">
+            <button class="dropbtn" id="supportBtn" type="button" aria-controls="supportMenu" aria-expanded="false">
               <i class="ti ti-headset" aria-hidden="true"></i>
               <span>الدعم الفني</span>
               <i class="ti ti-chevron-down" aria-hidden="true"></i>
@@ -230,7 +181,7 @@
   </nav>
 </header>
 
-<!-- ✅ مودل تسجيل دخول الإدارة (بدون Bootstrap) -->
+<!-- ✅ مودل تسجيل دخول الإدارة -->
 <div class="admin-modal-overlay" id="adminModal" aria-hidden="true">
   <div class="admin-modal" role="dialog" aria-modal="true" aria-label="تسجيل دخول الإدارة">
     <button class="admin-close" id="closeAdminModal" type="button" aria-label="إغلاق">×</button>
@@ -239,26 +190,98 @@
 
     <div class="admin-field">
       <label for="adminPhone">رقم الجوال</label>
-      <input id="adminPhone" type="tel" placeholder="05xxxxxxxx" autocomplete="off">
+      <input id="adminPhone" type="tel" placeholder="05xxxxxxxx" autocomplete="off" inputmode="numeric">
     </div>
 
     <div class="admin-field">
       <label for="adminPass">الرقم السري</label>
-      <input id="adminPass" type="password" placeholder="••••••••" autocomplete="off">
+      <input id="adminPass" type="password" placeholder="••••••••" autocomplete="current-password">
     </div>
 
     <div class="admin-actions">
-      <button class="admin-login-btn" type="button">تسجيل الدخول</button>
+      <button class="admin-login-btn" id="adminLoginSubmit" type="button">تسجيل الدخول</button>
       <button class="admin-cancel-btn" id="cancelAdminModal" type="button">إلغاء</button>
     </div>
   </div>
 </div>
 
-<script src="/assets/js/header.js"></script>
-
-<!-- ✅ (إضافة فقط) ربط الزر بالمودل -->
+<!-- ✅ JS: Dropdown + Mobile Menu + Modal + Active Link -->
 <script>
+  (function () {
+    const $ = (id) => document.getElementById(id);
 
+    const hamburger = $("hamburger");
+    const menu = $("menu");
+
+    const loginBtn = $("loginBtn");
+    const adminModal = $("adminModal");
+    const closeAdminModal = $("closeAdminModal");
+    const cancelAdminModal = $("cancelAdminModal");
+
+    const dropdowns = [
+      { root: $("coursesDropdown"), btn: $("coursesBtn") },
+      { root: $("supportDropdown"), btn: $("supportBtn") },
+    ];
+
+    // Mobile menu toggle
+    hamburger.addEventListener("click", () => {
+      const open = menu.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", String(open));
+      dropdowns.forEach(d => {
+        d.root.classList.remove("open");
+        d.btn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Dropdown toggles
+    dropdowns.forEach(({ root, btn }) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = root.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+        dropdowns.forEach((d) => {
+          if (d.root !== root) {
+            d.root.classList.remove("open");
+            d.btn.setAttribute("aria-expanded", "false");
+          }
+        });
+      });
+    });
+
+    // Close dropdowns on outside click
+    document.addEventListener("click", (e) => {
+      dropdowns.forEach(({ root, btn }) => {
+        if (!root.contains(e.target)) {
+          root.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    // Modal open/close
+    function openModal() {
+      adminModal.classList.add("active");
+      adminModal.setAttribute("aria-hidden", "false");
+      setTimeout(() => $("adminPhone")?.focus(), 0);
+    }
+    function closeModal() {
+      adminModal.classList.remove("active");
+      adminModal.setAttribute("aria-hidden", "true");
+      loginBtn?.focus();
+    }
+
+    loginBtn.addEventListener("click", openModal);
+    closeAdminModal.addEventListener("click", closeModal);
+    cancelAdminModal.addEventListener("click", closeModal);
+    adminModal.addEventListener("click", (e) => { if (e.target === adminModal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && adminModal.classList.contains("active")) closeModal(); });
+
+    // Active link highlight
+    const page = document.body.getAttribute("data-page") || "";
+    document.querySelectorAll(".menu .link[data-page]").forEach((a) => {
+      if (a.getAttribute("data-page") === page) a.classList.add("active");
+    });
+  })();
 </script>
 
 </body>
