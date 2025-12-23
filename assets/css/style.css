@@ -45,7 +45,7 @@
 
     /* شريط علوي رسمي */
     .topbar{
-      background: linear-gradient(90deg, #ad1919, #0B2A4A);
+      background: linear-gradient(90deg, #ad1919);
       color:#fff;
       padding:10px 0;
     }
