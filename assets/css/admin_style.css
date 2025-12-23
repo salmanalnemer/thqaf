@@ -1,0 +1,141 @@
+/* =========================
+   الأساسيات
+========================= */
+:root{
+  --primary:#8b0000;       /* عنابي */
+  --primary-light:#b22222;
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --text:#222;
+}
+
+body{
+  margin:0;
+  font-family: "Tajawal", system-ui, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* =========================
+   زر تسجيل الدخول
+========================= */
+.login{
+  margin:100px auto;
+  display:block;
+  padding:14px 32px;
+  font-size:16px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-light));
+  color:#fff;
+  cursor:pointer;
+  transition:0.3s;
+}
+.login:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   المودل (الخلفية)
+========================= */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.modal.active{
+  display:flex;
+}
+
+/* =========================
+   كرت المودل
+========================= */
+.modalBox{
+  width:100%;
+  max-width:420px;
+  background:var(--card);
+  border-radius:18px;
+  padding:28px;
+  animation:fadeUp .3s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+.modalBox h3{
+  margin:0 0 6px;
+  text-align:center;
+}
+.modalBox p{
+  margin:0 0 20px;
+  text-align:center;
+  color:#666;
+  font-size:14px;
+}
+
+/* =========================
+   الحقول
+========================= */
+.field{
+  margin-bottom:14px;
+}
+.field label{
+  display:block;
+  font-size:13px;
+  margin-bottom:6px;
+}
+.field input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  font-size:14px;
+}
+.field input:focus{
+  outline:none;
+  border-color:var(--primary);
+}
+
+/* =========================
+   أزرار المودل
+========================= */
+.modalActions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+.modalActions button{
+  flex:1;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+}
+.btnLogin{
+  background:var(--primary);
+  color:#fff;
+}
+.btnCancel{
+  background:#eee;
+}
+
+/* =========================
+   زر الإغلاق
+========================= */
+.closeBtn{
+  position:absolute;
+  inset-inline-start:16px;
+  top:16px;
+  background:none;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+}

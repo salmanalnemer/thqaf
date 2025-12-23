@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ثقف | تسجيل دخول جهات حكومية</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <style>
+    .loginWrap{max-width:520px;margin:0 auto;padding:24px}
+    .loginCard{background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.06)}
+    .loginTitle{margin:0 0 6px;font-weight:900}
+    .loginSub{margin:0 0 18px;color:#666}
+    .fGroup{margin-bottom:12px}
+    .fGroup label{display:block;margin-bottom:6px;font-size:13px}
+    .fGroup input{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);font-family:"Tajawal",sans-serif}
+    .loginActions{display:flex;gap:10px;margin-top:14px}
+    .btnA{flex:1;padding:12px;border-radius:12px;border:0;cursor:pointer;font-family:"Tajawal",sans-serif;font-weight:800}
+    .btnPrimary{background:#7b0012;color:#fff}
+    .btnGhost{background:#f2f2f2}
+  </style>
+</head>
+
+<body data-page="home">
+  <div id="appHeader"></div>
+
+  <main class="wrap">
+    <section class="loginWrap">
+      <div class="loginCard">
+        <h2 class="loginTitle">تسجيل دخول جهات حكومية</h2>
+        <p class="loginSub">الرجاء إدخال البريد الإلكتروني والرقم السري.</p>
+
+        <form action="#" method="post" autocomplete="on">
+          <div class="fGroup">
+            <label for="govEmail">البريد الإلكتروني</label>
+            <input id="govEmail" name="email" type="email" placeholder="name@example.com" required>
+          </div>
+
+          <div class="fGroup">
+            <label for="govPass">الرقم السري</label>
+            <input id="govPass" name="password" type="password" placeholder="••••••••" required>
+          </div>
+
+          <div class="loginActions">
+            <button class="btnA btnPrimary" type="submit">تسجيل الدخول</button>
+            <button class="btnA btnGhost" type="button" onclick="history.back()">رجوع</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="appFooter"></div>
+  <script src="/assets/js/header.js" defer></script>
+</body>
+</html>

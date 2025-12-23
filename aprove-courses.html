@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ثقف | اعتماد الدورات</title>
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <style>
+   
+  </style>
+</head>
+
+<body>
+  <!-- Header injected here -->
+  <div id="appHeader"></div>
+
+  <main class="pageWrap">
+
+    <section class="pageHead" aria-label="رأس الصفحة">
+      <div class="titleBox">
+        <h1>اعتماد الدورات</h1>
+        <p>مراجعة طلبات إنشاء الدورات/المبادرات واعتمادها أو رفضها مع توثيق السبب.</p>
+      </div>
+
+      <div class="headBadges" aria-label="مؤشرات سريعة">
+        <span class="badge">طلبات قيد المراجعة: <b id="cntPending">3</b></span>
+        <span class="badge">تم الاعتماد: <b id="cntApproved">0</b></span>
+        <span class="badge">تم الرفض: <b id="cntRejected">0</b></span>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters" aria-label="فلاتر البحث">
+      <div class="fGroup">
+        <label for="q">بحث</label>
+        <input id="q" type="text" placeholder="ابحث بالعنوان / الجهة / مقدم الطلب..." />
+      </div>
+
+      <div class="fGroup">
+        <label for="type">النوع</label>
+        <select id="type">
+          <option value="all">الكل</option>
+          <option value="course">دورة</option>
+          <option value="initiative">مبادرة</option>
+        </select>
+      </div>
+
+      <div class="fGroup">
+        <label for="status">الحالة</label>
+        <select id="status">
+          <option value="all">الكل</option>
+          <option value="pending">قيد المراجعة</option>
+          <option value="approved">معتمد</option>
+          <option value="rejected">مرفوض</option>
+        </select>
+      </div>
+
+      <div class="btnRow">
+        <button class="btnSolid" type="button" id="applyBtn">تطبيق</button>
+        <button class="btnGhost" type="button" id="resetBtn">إعادة تعيين</button>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="tableCard" aria-label="طلبات الاعتماد">
+      <div class="tableTop">
+        <div class="hint">
+          عرض تجريبي (Front-end). اربطه لاحقًا بقاعدة البيانات أو API.
+        </div>
+        <div class="btnRow">
+          <button class="btnGhost" type="button" id="exportBtn">تصدير CSV</button>
+        </div>
+      </div>
+
+      <div class="tableWrap">
+        <table aria-label="جدول طلبات اعتماد الدورات">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>العنوان</th>
+              <th>النوع</th>
+              <th>الفئة المستهدفة</th>
+              <th>الجهة/المسار</th>
+              <th>مقدم الطلب</th>
+              <th>تاريخ الطلب</th>
+              <th>الحالة</th>
+              <th>إجراءات</th>
+            </tr>
+          </thead>
+          <tbody id="rows">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+ 
+
+  <!-- ================= Modal ================= -->
+  <div class="modalBack" id="modalBack" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modalHead">
+        <b id="modalTitle">تفاصيل الطلب</b>
+        <button class="closeX" type="button" id="closeModal" aria-label="إغلاق">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <div class="info">
+          <h4>معلومات الدورة/المبادرة</h4>
+          <div class="kv" id="kvCourse"></div>
+        </div>
+
+        <div class="info">
+          <h4>معلومات مقدم الطلب</h4>
+          <div class="kv" id="kvRequester"></div>
+
+          <div class="rejectBox" id="rejectBox">
+            <label for="rejectReason">سبب الرفض</label>
+            <textarea id="rejectReason" placeholder="اكتب سبب الرفض بشكل واضح..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modalFoot">
+        <div class="small" id="modalHint">اختر الإجراء المناسب ثم تأكيد العملية.</div>
+
+        <div class="footActions">
+          <button class="aBtn" type="button" id="modalViewOnly">عرض فقط</button>
+          <button class="aBtn ok" type="button" id="modalApprove">اعتماد</button>
+          <button class="aBtn no" type="button" id="modalReject">رفض</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- ================= End Modal ================= -->
+      <!-- Footer injected here -->
+  <div id="appFooter"></div>
+
+  <script src="/assets/js/header.js"></script>
+        <!-- js استدعاء -->
+<script src="/assets/js/aprove-courses.js"></script>
+</body>
+</html>

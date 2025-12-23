@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تسجيل دخول الإدارة</title>
+
+<body>
+
+<!-- زر تسجيل دخول الإدارة -->
+<button class="login" id="loginBtn">تسجيل دخول الإدارة</button>
+
+<!-- =========================
+     مودل تسجيل الدخول
+========================= -->
+<div class="modal" id="loginModal">
+
+  <div class="modalBox">
+    <button class="closeBtn" id="closeModal">×</button>
+
+    <h3>تسجيل دخول الإدارة</h3>
+    <p>الرجاء إدخال بيانات الدخول</p>
+
+    <form id="loginForm">
+      <div class="field">
+        <label>رقم الجوال</label>
+        <input type="tel" name="phone" placeholder="05xxxxxxxx" required>
+      </div>
+
+      <div class="field">
+        <label>الرقم السري</label>
+        <input type="password" name="password" placeholder="••••••••" required>
+      </div>
+
+      <div class="modalActions">
+        <button type="submit" class="btnLogin">تسجيل الدخول</button>
+        <button type="button" class="btnCancel" id="cancelBtn">إلغاء</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+/* =========================
+   التحكم بالمودل
+========================= */
+const loginBtn   = document.getElementById('loginBtn');
+const loginModal = document.getElementById('loginModal');
+const closeBtn   = document.getElementById('closeModal');
+const cancelBtn  = document.getElementById('cancelBtn');
+
+loginBtn.onclick = () => loginModal.classList.add('active');
+closeBtn.onclick = cancelBtn.onclick = () => loginModal.classList.remove('active');
+
+// إغلاق عند الضغط خارج المودل
+loginModal.addEventListener('click', e=>{
+  if(e.target === loginModal){
+    loginModal.classList.remove('active');
+  }
+});
+
+/* =========================
+   إرسال النموذج (تجريبي)
+========================= */
+document.getElementById('loginForm').addEventListener('submit', e=>{
+  e.preventDefault();
+
+  const phone = e.target.phone.value;
+  const pass  = e.target.password.value;
+
+  console.log("رقم الجوال:", phone);
+  console.log("كلمة المرور:", pass);
+
+  // هنا لاحقًا:
+  // fetch('login.php', {...})
+
+  alert('تم إرسال البيانات (تجريبي)');
+});
+</script>
+
+</body>
+</html>

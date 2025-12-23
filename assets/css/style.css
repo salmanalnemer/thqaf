@@ -1,0 +1,1573 @@
+/* ============================================================
+   THQAF - Shared Styles (Header + Index + Footer)
+   ============================================================ */
+/* المتغيرات الأساسية */
+:root{
+  --navy:#d61010;
+  --navy2:#c62222;
+  --red:#E11D48;
+
+  --white:#ffffff;
+  --black:#111827;
+  --muted:#6B7280;
+
+  --bg:#F6F8FC;
+  --line:rgba(15, 43, 84, 0.14);
+
+  --shadow: 0 12px 30px rgba(11, 30, 58, 0.14);
+  --radius: 18px;
+  --focus: 0 0 0 4px rgba(225, 29, 72, 0.18);
+
+}
+/* إعادة تعيين الصندوق */
+*{ box-sizing:border-box; }
+/* الهيكل الأساسي */
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family:"Tajawal",system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--black);
+  /*padding-bottom: calc(var(--footer-h) + 16px);*/
+  padding-bottom: 80px;
+}
+
+/* مساحة أسفل الصفحة للفوتر الثابت */
+:root{
+  --footer-h: 64px;
+}
+
+main{
+  padding-bottom: calc(var(--footer-h) + 24px);
+}
+
+/* إزالة التنسيقات الافتراضية */
+a{ color:inherit; text-decoration:none; }
+button,input{ font-family:inherit; }
+svg{ display:block; }
+/* الحاوية المركزية */
+.wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+/* =========================
+   Header + Nav Styles
+   ========================= */
+.header, .nav, .top, .row, .wrap{
+  overflow: visible !important;
+}
+/* الهيدر الثابت */
+.header{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  box-shadow:var(--shadow);
+}
+/* محتوى الهيدر العلوي */
+.top{
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,0.10);
+}
+/* صف الهيدر العلوي */
+.top .row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+/* =========================
+   Brand / Logo (Professional Circular)
+   ========================= */
+/* شعار الرئيسية */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+  user-select:none;
+}
+
+/* شعار الدائرية */
+.logo{
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+
+  /* ظل احترافي */
+  box-shadow:
+    0 6px 16px rgba(0,0,0,0.25),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+/* صورة الشعار */
+.logo img{
+  width:82%;
+  height:82%;
+  object-fit:contain;
+  display:block;
+}
+
+/* النص */
+.brand .stack{
+  display:flex;
+  flex-direction:column;
+  line-height:1.15;
+}
+/* نص العنوان */
+.brand .stack b{
+  font-size:16px;
+  font-weight:800;
+}
+/* نص الوصف */
+.brand .stack span{
+  font-size:12px;
+  opacity:.85;
+}
+
+/* 📱 تحسين للجوال */
+@media (max-width: 980px){
+  .logo{
+    width:42px;
+    height:42px;
+  }
+/*  اختصار النص بالجوال */
+  .brand .stack span{
+    display:none; /* اختياري – أنظف بالجوال */
+  }
+}
+
+/* =========================
+   Search + Login + Hamburger
+   ========================= */
+.search{
+  flex:1;
+  max-width:520px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:999px;
+  padding:10px 14px;
+}
+.search .icon{ color:#fff; opacity:.95; }
+.search input{
+  width:100%;
+  background:transparent;
+  border:0;
+  outline:none;
+  color:#fff;
+  font-size:14px;
+}
+.search input::placeholder{ color:rgba(255,255,255,0.75); }
+/* زر تسجيل الدخول */
+.login{
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+  border-radius:999px;
+  padding:10px 14px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  user-select:none;
+}
+/* تأثير hover و focus */
+.login:hover{ background:rgba(255,255,255,0.14); }
+.login:focus{ outline:none; box-shadow:0 0 0 4px rgba(255,255,255,0.18); }
+/* زر الهامبرغر (القائمة بالجوال) */
+.hamburger{
+  display:none;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(255,255,255,0.10);
+  color:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+/* تأثير hover و focus */
+.hamburger:hover{ background:rgba(255,255,255,0.14); }
+.hamburger:focus{ outline:none; box-shadow:0 0 0 4px rgba(255,255,255,0.18); }
+
+.icon{ width:18px; height:18px; color:currentColor; }
+.caret{ width:10px; height:17px; opacity:.85; }
+/* =========================
+   Navigation Styles
+   ========================= */
+.nav{ background:#fff; }
+.nav .row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 0;
+  width:100%;
+  flex-wrap:wrap; /* ✅ يساعد بالجوال */
+}
+/* ✅ القائمة الرئيسية */
+.menu{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  flex:1;
+}
+
+/* ✅ رابط/زر مع أيقونة */
+.link,.dropbtn{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--black);
+  cursor:pointer;
+  font-size:14px;
+  user-select:none;
+  white-space:nowrap;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .08s ease;
+}
+
+/* ✅ hover أحسن */
+.link:hover,.dropbtn:hover{
+  background:rgb(225, 29, 29);
+  border-color:rgba(225,29,72,0.22);
+  color:#fff;
+  transform: translateY(-1px);
+}
+/* ✅ focus أحسن */
+.link:focus,.dropbtn:focus{ outline:none; box-shadow:var(--focus); }
+/* ✅ dropdown container */
+.dropdown{ position:relative; }
+
+/* ✅ dropdown menu */
+.dropdown-menu{
+  position:absolute;
+  top:calc(100% + 10px);
+  inset-inline-start:0;
+  min-width:260px;
+  background:#fff;
+  border:1px solid rgba(17,24,39,0.10);
+  border-radius:16px;
+  box-shadow:0 18px 50px rgba(0,0,0,0.12);
+  padding:8px;
+  display:none;
+  z-index:99999;
+}
+/* ✅ إظهار الدروب داون عند الفتح */
+.dropdown.open .dropdown-menu{ display:block; }
+
+/* ✅ dropdown items */
+.dropdown-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid transparent;
+  font-size:14px;
+  color:var(--black);
+}
+/* ✅ hover للدروب داون */
+.dropdown-item:hover{
+  background:rgba(225,29,72,0.10);
+  border-color:rgba(225,29,72,0.18);
+  color:var(--red);
+}
+
+/* =========================
+   Mobile
+   ========================= */
+@media (max-width: 980px){
+  .search{ display:none; }
+  .hamburger{ display:inline-flex; }
+
+  /* ✅ إصلاح أساسي لظهور القائمة بالجوال */
+  .nav{ height:auto; }
+  .nav .row{ align-items:stretch; }
+
+  /* ✅ قائمة الجوال column */
+  .menu{
+    display:none;
+    width:100%;
+    padding-top:10px;
+    flex:unset;
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+  }
+  .menu.open{ display:flex; }
+
+  /* ✅ dropdown داخل الجوال static */
+  .dropdown-menu{
+    position:static;
+    width:100%;
+    min-width:unset;
+    box-shadow:none;
+    margin-top:8px;
+  }
+
+  /* ✅✅✅ ترتيب كل القوائم يمين بالجوال (RTL) */
+  .menu{ direction: rtl; }
+
+  /* إعادة ترتيب محتوى الروابط والدروب داون */
+  .menu .link,
+  .menu .dropbtn,
+  .menu .dropdown-item{
+    display:flex;
+    flex-direction:row-reverse;     /* الأيقونة يمين */
+    justify-content:flex-start;     /* كل شيء يمين */
+    align-items:center;
+    text-align:right;
+    gap:10px;
+    padding:12px 14px;
+    width:100%;
+  }
+
+  /* النصوص تصير أقصى اليسار */
+  .menu .link span,
+  .menu .dropbtn span,
+  .menu .dropdown-item span{
+    flex:1;
+    text-align:right;
+  }
+
+  /* سهم الدروب داون (Tabler) يصير أقصى اليسار */
+  .menu .dropbtn .ti-chevron-down{
+    margin-inline-start:auto;
+  }
+
+  /* لو عندك caret نصي ▾ خله يسار بعد */
+  .menu .dropbtn .caret{
+    margin-inline-start:8px;
+  }
+}
+
+/* ✅ hover للكمبيوتر فقط */
+@media (min-width: 981px){
+  .dropdown:hover .dropdown-menu{ display:block; }
+  .dropdown:focus-within .dropdown-menu{ display:block; }
+}
+
+/* =========================
+   Index Page Styles
+   ========================= */
+.sectionTitle{
+  margin-top:14px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.sectionTitle h2{
+  margin:0;
+  font-size:15px;
+  color:var(--navy);
+}
+.sectionTitle p{
+  margin:6px 0 0;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.grid4{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:12px;
+}
+
+@media (max-width:1100px){ .grid4{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+@media (max-width:850px){ .grid4{ grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+@media (max-width:520px){ .grid4{ grid-template-columns:1fr; } }
+
+.offerCard{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 10px 26px rgba(11,30,58,0.06);
+  overflow:hidden;
+  transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+  cursor:pointer;
+  user-select:none;
+  min-height:128px;
+}
+/* تأثير hover */
+.offerCard:hover{
+  transform: translateY(-2px);
+  box-shadow:0 16px 38px rgba(11,30,58,0.12);
+  border-color:rgba(225,29,72,0.25);
+}
+/* محتوى البطاقة */
+.offerHead{
+  padding:14px 14px 10px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+/*  عنوان البطاقة */
+.offerTitle{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+/* عنوان البطاقة الرئيسي */
+.offerTitle b{
+  font-size:13px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+/* وصف البطاقة */
+.offerTitle span{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+/*  أيقونة البطاقة */
+.offerIcon{
+  width:44px;
+  height:44px;
+  border-radius:16px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(15,43,84,0.12);
+  background:linear-gradient(180deg, rgba(11,30,58,0.06), rgba(11,30,58,0.02));
+  flex:0 0 auto;
+}
+/* حجم ولون الأيقونة */
+.offerIcon svg{ width:22px; height:22px; color:var(--navy); }
+/*  تذييل البطاقة */
+.offerFooter{
+  padding:0 14px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+/* الوسم */
+.tag{
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid rgba(11,30,58,0.12);
+  background:rgba(11,30,58,0.05);
+  color:var(--navy);
+  font-size:12px;
+  white-space:nowrap;
+}
+/* الزر الصغير */
+.miniBtn{
+  border:1px solid rgb(255, 255, 255);
+  background:rgba(22, 165, 48, 0.05);
+  color:var(--navy);
+  border-radius:12px;
+  padding:8px 10px;
+  cursor:pointer;
+  font-size:12px;
+  transition: transform .08s ease, background .2s ease, border-color .2s ease, color .2s ease;
+  white-space:nowrap;
+}
+/* تأثير hover للزر الصغير */
+.miniBtn:hover{
+  background:#1fad47;
+  border-color:#1fad47;
+  color:#ffffff;
+  transform: translateY(-1px);
+}
+/* رسالة خطأ حقن المحتوى */
+.injectError{
+  padding:12px 16px;
+  background:#fff;
+  border:1px solid rgba(15,43,84,.14);
+  border-radius:14px;
+  margin:16px;
+  color:#111827;
+  font-size:13px;
+  line-height:1.8;
+}
+.injectError b{ color:var(--navy); }
+
+/* =========================
+   Footer (Fixed)
+   ========================= */
+.thqafFooter{
+  position:fixed;
+  inset-inline:0;
+  bottom:0;
+  z-index:999;
+  background:rgba(11,30,58,0.98);
+  border-top:1px solid rgba(255,255,255,0.10);
+  color:rgba(255,255,255,0.90);
+}
+
+/* محتوى الفوتر */
+.thqafFooter .wrap{
+  height:var(--footer-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+/* جهة اليمين واليسار */
+.thqafFooter .footerRight{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:12px;
+}
+/* النقطة الفاصلة */
+.thqafFooter .dot{
+  width:6px;
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.45);
+  display:inline-block;
+}
+/* جهة اليسار */ 
+.thqafFooter .footerLeft{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+/* روابط الفوتر */
+.thqafFooter .footerLink{
+  color:#fff;
+  opacity:.92;
+  font-size:12px;
+}
+.thqafFooter .footerLink:hover{ opacity:1; }
+
+/* =========================
+   ✅ Mobile spacing fix
+   ========================= */
+@media (max-width: 980px){
+  body{
+    padding-bottom: calc(var(--footer-h) + 32px);
+  }
+  .thqafFooter::before{
+    content:"";
+    display:block;
+    height:24px;
+    width:100%;
+  }
+}
+
+/* ✅ Tabler Webfont enforce */
+i.ti{
+  font-family:"tabler-icons" !important;
+  font-style:normal !important;
+  font-weight:400 !important;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  font-size:18px;
+}
+
+/* زر أيقونة الحساب */
+#accountBtn{
+  padding:5px 12px;
+  border-radius:999px;
+  color:#ffffff;
+  border:1px solid rgba(255, 255, 255, 0.25);
+}
+#accountBtn .ti{ font-size:15px; }
+
+/* =========================
+   End of THQAF Shared Styles
+   ========================= */
+
+
+/* ============================================================
+   HERO (Image section)
+   ============================================================ */
+.hero{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  padding:60px 8%;
+  background:linear-gradient(135deg,#f7fafc,#eef5ff);
+  align-items:center;
+}
+
+.hero h1{font-size:38px;margin-bottom:10px}
+.hero p{color:#555;max-width:420px}
+
+.heroActions{margin-top:20px;display:flex;gap:12px}
+.btn{
+  padding:10px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+}
+.btn.primary{background:#1b5cff;color:#fff}
+.btn.ghost{border:1px solid #1b5cff;color:#1b5cff}
+
+/* ✅ تم إصلاح التعارض: transform واحد فقط */
+.heroImage{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-inline:auto;
+}
+.heroImage img{
+  max-width:900px;
+  width:100%;
+  display:block;
+}
+
+/* ============================================================
+   THQAF "Najiz-style" Hero (Cards + Text)
+   ============================================================ */
+
+.thqafNajizHero{
+  position:relative;
+  overflow:hidden;
+  padding:34px 40px;
+  background:
+    radial-gradient(1200px 700px at 80% 40%, rgba(0,150,120,.08), transparent 60%),
+    linear-gradient(180deg,#ffffff 0%, #ffffff 100%);
+  display:grid;
+  gap:40px;
+  min-height:480px;
+
+  /* ✅ Desktop: الكروت يمين + النص يسار (معكوس) */
+  grid-template-columns: .85fr 1.15fr;
+}
+
+/* خلفية نقاط */
+.bgDots{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.55;
+  background-image: radial-gradient(rgba(163, 163, 163, 0.22) 1px, transparent 1px);
+  background-size: 10px 10px;
+  mask-image: radial-gradient(circle at 70% 45%, rgb(186, 186, 186) 0 35%, transparent 60%);
+}
+
+/* ===== الكروت (يمين) ===== */
+.cardsRail{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:22px;
+  align-items:stretch;
+  z-index:2;
+
+  order:2; /* ✅ يمين */
+}
+
+.nCard{
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 10px 26px rgba(0,0,0,.12);
+  border:1px solid rgba(0,0,0,.08);
+  overflow:hidden;
+  min-height:390px;
+  display:flex;
+  flex-direction:column;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.nCard:hover{
+  transform: translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,.16);
+}
+
+/* رأس الكرت */
+.nHead{
+  height:74px;
+  padding:10px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:#eee;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.nBrand{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  line-height:1;
+}
+
+.nLogo{
+  width:45px;
+  height:22px;
+  object-fit:contain;
+  opacity:.95;
+}
+.nSub{
+  font-size:11px;
+  color:rgba(0,0,0,.45);
+}
+
+/* علامة ✅ كبيرة */
+.nTick{
+  width:46px; height:46px;
+  border-radius:10px;
+  background:
+    linear-gradient(135deg, rgba(255,205,70,.95), rgba(255,205,70,.95)) 10px 14px/12px 8px no-repeat,
+    linear-gradient(135deg, rgba(0,0,0,.65), rgba(0,0,0,.65)) 22px 10px/22px 30px no-repeat;
+  opacity:.9;
+}
+
+/* جسم الكرت */
+.nBody{
+  padding:16px 16px 18px;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.nBody h3{
+  margin:0;
+  font-size:18px;
+  color:#2a2f35;
+}
+.nBody p{
+  margin:0;
+  font-size:13px;
+  color:rgba(0,0,0,.55);
+  line-height:1.7;
+}
+
+/* Illustrations placeholders */
+.nIllu{
+  margin-top:auto;
+  height:140px;
+  border-radius:8px;
+  background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.01));
+  border:1px dashed rgba(0,0,0,.10);
+}
+.nIllu.dotted{
+  background:
+    radial-gradient(rgba(180,140,80,.25) 1px, transparent 1px) 0 0/10px 10px,
+    linear-gradient(180deg, rgba(180,140,80,.06), rgba(0,0,0,.01));
+  border:1px solid rgba(180,140,80,.18);
+}
+.nIllu.skyline{
+  background:
+    linear-gradient(180deg, rgba(0,120,255,.08), rgba(0,0,0,.01));
+  border:1px solid rgba(0,120,255,.18);
+}
+.nIllu.skylineper{
+  background:
+    linear-gradient(180deg, rgba(0,120,255,.08), rgba(0,0,0,.01));
+  border:1px solid rgba(88, 193, 111, 0.832);
+}
+
+/* People block */
+.nPeople{
+  margin-top:auto;
+  height:120px;
+  border-radius:8px;
+  background:
+    linear-gradient(180deg, rgba(0,150,120,.08), rgba(0,0,0,.01));
+  border:1px solid rgba(0,150,120,.20);
+}
+
+/* زر */
+.nActions{ margin-top:10px; }
+.nBtn{
+  width:100%;
+  padding:10px 14px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.18);
+  background:#fff;
+  font-weight:700;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  transition: transform .2s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.nBtn .arr{ font-weight:900; }
+.nBtn:hover{
+  transform: translateY(-2px);
+  box-shadow:0 10px 18px rgba(0,0,0,.14);
+}
+
+.nBtn.primary{
+  background:#0aa06e;
+  border-color:#0aa06e;
+  color:#fff;
+}
+.nBtn.primary:hover{
+  background:#078e61;
+  border-color:#078e61;
+}
+
+.nCard.isActive{
+  border-color: rgba(0,150,120,.55);
+  box-shadow:0 18px 45px rgba(0,0,0,.18);
+  transform: translateY(-8px);
+}
+
+/* ألوان الهيدر لكل نوع */
+.nCard.lawyers .nHead{ background:#dedede; }
+.nCard.lawyers .nTick{
+  background:
+    linear-gradient(135deg, rgba(255,205,70,.95), rgba(255,205,70,.95)) 10px 14px/12px 8px no-repeat,
+    linear-gradient(135deg, rgba(0,0,0,.55), rgba(0,0,0,.55)) 22px 10px/22px 30px no-repeat;
+}
+.nCard.gov .nHead{ background:#e8e0d3; }
+.nCard.gov .nTick{
+  background:
+    linear-gradient(135deg, rgba(255,205,70,.95), rgba(255,205,70,.95)) 10px 14px/12px 8px no-repeat,
+    linear-gradient(135deg, rgba(120,80,25,.75), rgba(120,80,25,.75)) 22px 10px/22px 30px no-repeat;
+}
+.nCard.biz .nHead{ background:#d7e9fb; }
+.nCard.biz .nTick{
+  background:
+    linear-gradient(135deg, rgba(255,205,70,.95), rgba(255,205,70,.95)) 10px 14px/12px 8px no-repeat,
+    linear-gradient(135deg, rgba(0,120,255,.75), rgba(0,120,255,.75)) 22px 10px/22px 30px no-repeat;
+}
+.nCard.per .nHead{ background:#cfeee3; }
+.nCard.per .nTick{
+  background:
+    linear-gradient(135deg, rgba(255,205,70,.95), rgba(255,205,70,.95)) 10px 14px/12px 8px no-repeat,
+    linear-gradient(135deg, rgba(0,150,120,.78), rgba(0,150,120,.78)) 22px 10px/22px 30px no-repeat;
+}
+
+/* ===== النص (يسار) ===== */
+.heroText{
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+  padding-inline-start:10px;
+
+  order:1;               /* ✅ يسار */
+  text-align:left;
+  align-items:flex-start;
+}
+
+.heroText h1{
+  margin:0;
+  font-size:48px;
+  color:#2f3a44;
+  letter-spacing:.2px;
+}
+.heroText h2{
+  margin:0;
+  font-size:30px;
+  color:#3a4752;
+  line-height:1.4;
+  font-weight:800;
+}
+.heroQuote{
+  margin:18px 0 0;
+  font-size:18px;
+  color:rgba(0,0,0,.55);
+  line-height:1.9;
+  max-width:520px;
+}
+.dot{
+  width:10px; height:10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.18);
+}
+.dot.isOn{
+  width:12px; height:12px;
+  background:rgba(0,0,0,.55);
+}
+
+/* ============================================================
+   ✅ Responsive (مهم)
+   - الجوال: النص فوق الكروت (كما طلبت)
+   ============================================================ */
+@media (max-width: 1200px){
+  .thqafNajizHero{ grid-template-columns:1fr; }
+
+  /* ✅ النص فوق الكروت */
+  .heroText{
+    order:1;
+    text-align:center;
+    align-items:center;
+    margin-bottom:24px;
+  }
+  .heroDots{ justify-content:center; }
+
+  /* ✅ الكروت تحت */
+  .cardsRail{
+    order:2;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px){
+  .thqafNajizHero{ padding:22px 16px; }
+  .cardsRail{ grid-template-columns:1fr; }
+  .heroText h1{ font-size:38px; }
+  .heroText h2{ font-size:22px; line-height:1.6; }
+  .heroQuote{ font-size:16px; max-width:100%; }
+}
+
+/* ================= STATS ================= */
+.stats{
+  margin: 28px auto;
+  max-width: 1200px;
+  background: #fff;
+  border: 1px solid rgba(15, 43, 84, 0.10);
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(11,30,58,0.06);
+  padding: 26px 18px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0; /* الفواصل داخلية */
+  overflow: hidden;
+}
+
+.stat{
+  padding: 18px 18px 16px;
+  text-align: center;
+  position: relative;
+  transition: transform .2s ease, background-color .25s ease, box-shadow .25s ease;
+}
+
+/* الفاصل العمودي بين العناصر */
+.stat:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  top: 16px;
+  bottom: 16px;
+  inset-inline-end: 0; /* يدعم RTL/LTR */
+  width:1px;
+  background: rgba(15, 43, 84, 0.10);
+}
+
+/* رقم الإحصائية */
+.stat b{
+  display:block;
+  font-size: 46px;
+  line-height: 1.05;
+  letter-spacing: .5px;
+  color: #0B1E3A;
+  margin-bottom: 10px;
+}
+
+/* وصف الإحصائية */
+.stat span{
+  display:block;
+  font-size: 13px;
+  color: rgba(17,24,39,.65);
+  line-height: 1.9;
+}
+
+/* Hover لطيف */
+.stat:hover{
+  background: rgba(11,30,58,0.03);
+  transform: translateY(-3px);
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 900px){
+  .stats{
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .stat{
+    padding: 16px 12px;
+    text-align: center;
+  }
+  /* الفاصل يتحول أفقي بدل عمودي */
+  .stat:not(:last-child)::after{
+    top: auto;
+    bottom: 0;
+    inset-inline-end: auto;
+    inset-inline-start: 12px;
+    inset-inline-end: 12px;
+    height: 1px;
+    width: auto;
+  }
+  .stat b{
+    font-size: 38px;
+  }
+}
+
+/* ================= FAQ ================= */
+.faq{
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border: 1px solid rgba(15,43,84,0.10);
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(11,30,58,0.08);
+}
+
+/* عنوان القسم */
+.faq h3{
+  margin: 0 0 22px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  position: relative;
+  padding-inline-start: 14px;
+}
+
+/* خط جانبي صغير مثل المنصات الرسمية */
+.faq h3::before{
+  content:"";
+  position:absolute;
+  inset-inline-start:0;
+  top:4px;
+  bottom:4px;
+  width:4px;
+  border-radius:4px;
+  background: var(--red);
+}
+
+/* عنصر السؤال */
+.faq details{
+  border: 1px solid rgba(15,43,84,0.12);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: #fafbfe;
+  transition: background .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+/* Hover */
+.faq details:hover{
+  background: #f4f7fd;
+  box-shadow: 0 6px 18px rgba(11,30,58,0.08);
+}
+
+/* السؤال */
+.faq summary{
+  list-style: none; /* إزالة السهم الافتراضي */
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* إزالة سهم المتصفح */
+.faq summary::-webkit-details-marker{
+  display:none;
+}
+
+/* سهم مخصص */
+.faq summary::after{
+  content:"⌄";
+  font-size: 18px;
+  line-height: 1;
+  color: var(--navy);
+  transition: transform .25s ease;
+}
+
+/* عند الفتح */
+.faq details[open]{
+  background:#fff;
+  border-color: rgba(225,29,72,0.25);
+}
+
+.faq details[open] summary::after{
+  transform: rotate(180deg);
+}
+
+/* نص الإجابة */
+.faq details p{
+  margin: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--muted);
+  padding-inline-end: 26px; /* مسافة للسهم */
+}
+
+/* ================= Mobile ================= */
+@media (max-width: 640px){
+  .faq{
+    padding: 22px 16px;
+    margin: 28px 12px;
+  }
+
+  .faq h3{
+    font-size: 16px;
+  }
+
+  .faq summary{
+    font-size: 13px;
+  }
+
+  .faq details p{
+    font-size: 12.5px;
+  }
+}
+
+/* ================= HERO VIDEO ================= */
+.heroVideo{
+  position: relative;
+  width: 100%;
+  height: 320px;              /* تحكم بالارتفاع */
+  overflow: hidden;
+  background: #000;
+}
+
+/* الفيديو نفسه */
+.heroVideoEl{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;          /* بدون إطار */
+  display: block;
+}
+
+/* تعتيم خفيف عشان النصوص اللي تحت */
+/*.heroVideoOverlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(11,30,58,0.35),
+    rgba(11,30,58,0.55)
+  );
+  pointer-events: none;
+}
+*/
+
+/* ================= Mobile ================= */
+@media (max-width: 768px){
+  .heroVideo{
+    height: 220px;
+  }
+}
+
+
+ /* ================= Approve Courses Page (Local) ================= */
+    .pageWrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:18px 16px 36px;
+    }
+
+    .pageHead{
+      margin-top:14px;
+      background:#fff;
+      border:1px solid rgba(15,43,84,0.10);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(11,30,58,0.06);
+      padding:16px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .pageHead .titleBox{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:240px;
+    }
+    .pageHead h1{
+      margin:0;
+      font-size:16px;
+      color:var(--navy);
+      font-weight:900;
+    }
+    .pageHead p{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .headBadges{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(11,30,58,0.05);
+      border:1px solid rgba(15,43,84,0.10);
+      font-size:12px;
+      color:var(--navy);
+      white-space:nowrap;
+    }
+    .badge b{
+      font-weight:900;
+      color:var(--navy2);
+    }
+
+    /* Filters */
+    .filters{
+      margin-top:12px;
+      background:#fff;
+      border:1px solid rgba(15,43,84,0.10);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(11,30,58,0.06);
+      padding:14px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr .8fr auto;
+      gap:10px;
+      align-items:end;
+    }
+
+    .fGroup{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .fGroup label{
+      font-size:12px;
+      color:rgba(17,24,39,.70);
+      font-weight:700;
+    }
+    .fGroup input,
+    .fGroup select{
+      height:42px;
+      border-radius:12px;
+      border:1px solid rgba(15,43,84,0.14);
+      background:#fff;
+      padding:0 12px;
+      outline:none;
+      font-size:13px;
+      color:var(--black);
+    }
+    .fGroup input:focus,
+    .fGroup select:focus{
+      box-shadow: var(--focus);
+      border-color: rgba(225,29,72,0.35);
+    }
+
+    .btnRow{
+      display:flex;
+      gap:8px;
+      justify-content:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .btnSolid{
+      height:42px;
+      border-radius:12px;
+      padding:0 14px;
+      border:1px solid transparent;
+      background:var(--navy);
+      color:#fff;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease;
+    }
+    .btnSolid:hover{ background:var(--navy2); transform:translateY(-1px); }
+
+    .btnGhost{
+      height:42px;
+      border-radius:12px;
+      padding:0 14px;
+      border:1px solid rgba(15,43,84,0.16);
+      background:#fff;
+      color:var(--navy);
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .btnGhost:hover{
+      background:rgba(11,30,58,0.03);
+      border-color:rgba(225,29,72,0.22);
+      transform:translateY(-1px);
+    }
+
+    /* Table */
+    .tableCard{
+      margin-top:12px;
+      background:#fff;
+      border:1px solid rgba(15,43,84,0.10);
+      border-radius:18px;
+      box-shadow:0 10px 26px rgba(11,30,58,0.06);
+      overflow:hidden;
+    }
+
+    .tableTop{
+      padding:12px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(15,43,84,0.10);
+      flex-wrap:wrap;
+    }
+    .tableTop .hint{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .tableWrap{
+      width:100%;
+      overflow:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      min-width: 860px;
+    }
+
+    thead th{
+      position:sticky;
+      top:0;
+      background:linear-gradient(180deg, #fbfbff, #f5f7ff);
+      color:var(--navy);
+      font-size:12px;
+      text-align:right;
+      padding:12px 12px;
+      border-bottom:1px solid rgba(15,43,84,0.10);
+      white-space:nowrap;
+    }
+
+    tbody td{
+      padding:12px 12px;
+      font-size:13px;
+      color:var(--black);
+      border-bottom:1px solid rgba(15,43,84,0.08);
+      vertical-align:middle;
+      white-space:nowrap;
+    }
+
+    tbody tr:hover td{
+      background:rgba(11,30,58,0.02);
+    }
+
+    .statusPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(15,43,84,0.12);
+      background:rgba(11,30,58,0.05);
+      font-size:12px;
+      font-weight:800;
+      color:var(--navy);
+    }
+    .statusPill.pending{
+      background:rgba(245,158,11,0.10);
+      border-color:rgba(245,158,11,0.25);
+      color:#92400e;
+    }
+    .statusPill.approved{
+      background:rgba(16,185,129,0.12);
+      border-color:rgba(16,185,129,0.28);
+      color:#065f46;
+    }
+    .statusPill.rejected{
+      background:rgba(225,29,72,0.10);
+      border-color:rgba(225,29,72,0.22);
+      color:#9f1239;
+    }
+
+    .actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .aBtn{
+      border-radius:12px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:900;
+      border:1px solid rgba(15,43,84,0.14);
+      background:#fff;
+      color:var(--navy);
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .aBtn:hover{
+      background:rgba(11,30,58,0.03);
+      border-color:rgba(225,29,72,0.22);
+      transform: translateY(-1px);
+    }
+
+    .aBtn.ok{
+      background:rgba(16,185,129,0.12);
+      border-color:rgba(16,185,129,0.28);
+      color:#065f46;
+    }
+    .aBtn.ok:hover{ background:rgba(16,185,129,0.18); }
+
+    .aBtn.no{
+      background:rgba(225,29,72,0.10);
+      border-color:rgba(225,29,72,0.22);
+      color:#9f1239;
+    }
+    .aBtn.no:hover{ background:rgba(225,29,72,0.14); }
+
+    /* Modal */
+    .modalBack{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.42);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999999;
+      padding:18px;
+    }
+    .modalBack.open{ display:flex; }
+
+    .modal{
+      width:min(920px, 100%);
+      background:#fff;
+      border-radius:18px;
+      border:1px solid rgba(15,43,84,0.10);
+      box-shadow:0 26px 70px rgba(0,0,0,0.22);
+      overflow:hidden;
+    }
+    .modalHead{
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(15,43,84,0.10);
+      background:linear-gradient(135deg, rgba(11,30,58,0.04), rgba(11,30,58,0.02));
+    }
+    .modalHead b{
+      font-size:14px;
+      color:var(--navy);
+    }
+    .closeX{
+      border:1px solid rgba(15,43,84,0.14);
+      background:#fff;
+      color:var(--navy);
+      border-radius:12px;
+      width:38px;
+      height:38px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .closeX:hover{ background:rgba(11,30,58,0.03); }
+
+    .modalBody{
+      padding:14px 16px 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+
+    .info{
+      border:1px solid rgba(15,43,84,0.10);
+      border-radius:14px;
+      padding:12px;
+      background:#fbfcff;
+    }
+    .info h4{
+      margin:0 0 10px;
+      font-size:13px;
+      color:var(--navy);
+    }
+    .kv{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:8px 10px;
+      font-size:12px;
+      color:rgba(17,24,39,.80);
+      line-height:1.8;
+    }
+    .kv span{ color:rgba(17,24,39,.62); }
+    .kv b{ color:var(--black); font-weight:800; }
+
+    .rejectBox{
+      border:1px solid rgba(225,29,72,0.18);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(225,29,72,0.06);
+      display:none;
+    }
+    .rejectBox.open{ display:block; }
+
+    .rejectBox label{
+      display:block;
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:8px;
+      color:#9f1239;
+    }
+    .rejectBox textarea{
+      width:100%;
+      min-height:96px;
+      resize:vertical;
+      border-radius:12px;
+      border:1px solid rgba(225,29,72,0.22);
+      padding:10px 12px;
+      outline:none;
+      font-size:13px;
+      line-height:1.8;
+      background:#fff;
+    }
+    .rejectBox textarea:focus{
+      box-shadow: 0 0 0 4px rgba(225,29,72,0.18);
+    }
+
+    .modalFoot{
+      padding:12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-top:1px solid rgba(15,43,84,0.10);
+      flex-wrap:wrap;
+    }
+    .modalFoot .small{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.8;
+    }
+
+    .footActions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    /* Mobile */
+    @media (max-width: 980px){
+      .filters{
+        grid-template-columns:1fr 1fr;
+      }
+      .btnRow{
+        grid-column: 1 / -1;
+      }
+      .modalBody{
+        grid-template-columns:1fr;
+      }
+      table{ min-width: 760px; }
+    }
