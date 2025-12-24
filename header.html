@@ -11,14 +11,11 @@
 
   <!-- Tabler Icons -->
   <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+
+  <!-- Global CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 
   <title>ثقف | الرئيسية</title>
-
-  <!-- ✅ رسمي + ألوان الهلال الأحمر (أحمر/أبيض/رمادي فاتح) بدون الأسود + الحفاظ على القوائم -->
-  <style>
-
-  </style>
 </head>
 
 <body data-page="home">
@@ -30,7 +27,10 @@
     <div class="wrap">
       <div class="row">
         <div class="meta">
-          <span><i class="ti ti-time" aria-hidden="true"></i> الوقت الأن 23:52 مساءاً</span>
+          <span>
+            <i class="ti ti-time" aria-hidden="true"></i>
+            <span id="liveTime" aria-live="polite">الوقت الآن —</span>
+          </span>
         </div>
 
         <div class="mini-actions">
@@ -63,7 +63,8 @@
 
         <div class="search" role="search" aria-label="بحث سريع">
           <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-           
+            <path d="M21 21l-4.3-4.3m1.3-5.2a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <input id="globalSearch" type="search" placeholder="بحث سريع..." autocomplete="off" />
         </div>
@@ -205,83 +206,10 @@
   </div>
 </div>
 
-<!-- ✅ JS: Dropdown + Mobile Menu + Modal + Active Link -->
+<!-- ✅ JS: Live Time + Dropdown + Mobile Menu + Modal + Active Link -->
+ <script src="/assets/js/header.js" defer></script>
 <script>
-  (function () {
-    const $ = (id) => document.getElementById(id);
-
-    const hamburger = $("hamburger");
-    const menu = $("menu");
-
-    const loginBtn = $("loginBtn");
-    const adminModal = $("adminModal");
-    const closeAdminModal = $("closeAdminModal");
-    const cancelAdminModal = $("cancelAdminModal");
-
-    const dropdowns = [
-      { root: $("coursesDropdown"), btn: $("coursesBtn") },
-      { root: $("supportDropdown"), btn: $("supportBtn") },
-    ];
-
-    // Mobile menu toggle
-    hamburger.addEventListener("click", () => {
-      const open = menu.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", String(open));
-      dropdowns.forEach(d => {
-        d.root.classList.remove("open");
-        d.btn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    // Dropdown toggles
-    dropdowns.forEach(({ root, btn }) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isOpen = root.classList.toggle("open");
-        btn.setAttribute("aria-expanded", String(isOpen));
-        dropdowns.forEach((d) => {
-          if (d.root !== root) {
-            d.root.classList.remove("open");
-            d.btn.setAttribute("aria-expanded", "false");
-          }
-        });
-      });
-    });
-
-    // Close dropdowns on outside click
-    document.addEventListener("click", (e) => {
-      dropdowns.forEach(({ root, btn }) => {
-        if (!root.contains(e.target)) {
-          root.classList.remove("open");
-          btn.setAttribute("aria-expanded", "false");
-        }
-      });
-    });
-
-    // Modal open/close
-    function openModal() {
-      adminModal.classList.add("active");
-      adminModal.setAttribute("aria-hidden", "false");
-      setTimeout(() => $("adminPhone")?.focus(), 0);
-    }
-    function closeModal() {
-      adminModal.classList.remove("active");
-      adminModal.setAttribute("aria-hidden", "true");
-      loginBtn?.focus();
-    }
-
-    loginBtn.addEventListener("click", openModal);
-    closeAdminModal.addEventListener("click", closeModal);
-    cancelAdminModal.addEventListener("click", closeModal);
-    adminModal.addEventListener("click", (e) => { if (e.target === adminModal) closeModal(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && adminModal.classList.contains("active")) closeModal(); });
-
-    // Active link highlight
-    const page = document.body.getAttribute("data-page") || "";
-    document.querySelectorAll(".menu .link[data-page]").forEach((a) => {
-      if (a.getAttribute("data-page") === page) a.classList.add("active");
-    });
-  })();
+ 
 </script>
 
 </body>

@@ -1,29 +1,35 @@
 /* ============================================================
-   THQAF - Header & Footer Injector + Dropdown Interactions
+   THQAF - Header & Footer Injector + Dropdown + Admin Modal + Live DateTime
    ------------------------------------------------------------
-   هذا الملف مسؤول عن:
-   1) حقن header.html داخل #appHeader و footer.html داخل #appFooter
-   2) تهيئة قائمة الجوال (الهامبرغر)
-   3) تهيئة جميع القوائم المنسدلة (courses / support / account ... إلخ)
-   4) إغلاق القوائم عند الضغط خارجها أو عند الضغط على ESC
-   5) تفعيل رابط الصفحة الحالية عبر data-page (اختياري)
-   6) تفعيل مودل تسجيل دخول الإدارة (يعمل في كل الصفحات بعد حقن الهيدر)
+   1) Inject header.html into #appHeader and footer.html into #appFooter
+   2) Mobile menu (hamburger)
+   3) Dropdowns
+   4) Close dropdowns on outside click / ESC
+   5) Highlight active page via body[data-page]
+   6) Admin login modal (delegation)
+   7) ✅ Live time with seconds + Gregorian + Hijri date (after injection)
    ============================================================ */
 
 (function () {
   "use strict";
 
   /* =========================
-     أدوات مساعدة (Helpers)
+     Helpers
      ========================= */
 
-  // حقن ملف HTML داخل عنصر محدد
+  function buildUrl(relativePath) {
+    return new URL(relativePath, window.location.href).toString();
+  }
+
   async function injectHTML(targetId, filePath) {
     const target = document.getElementById(targetId);
     if (!target) return null;
 
     try {
-      const res = await fetch(filePath, { cache: "no-store" });
+      const res = await fetch(buildUrl(filePath), {
+        cache: "no-store",
+        credentials: "same-origin",
+      });
       if (!res.ok) throw new Error(`${filePath} HTTP ${res.status}`);
 
       target.innerHTML = await res.text();
@@ -31,7 +37,7 @@
     } catch (err) {
       console.error(err);
       target.innerHTML = `
-        <div class="injectError">
+        <div class="injectError" style="padding:12px;border:1px solid #f3c;border-radius:12px;background:#fff;">
           تعذر تحميل <b>${filePath}</b> — شغّل المشروع عبر Live Server / XAMPP.
         </div>
       `;
@@ -39,7 +45,6 @@
     }
   }
 
-  // إغلاق جميع الدروب داون داخل نطاق معيّن (الهيدر عادة)
   function closeAllDropdowns(root) {
     root.querySelectorAll(".dropdown.open").forEach((dd) => {
       dd.classList.remove("open");
@@ -48,30 +53,78 @@
     });
   }
 
-  // تفعيل رابط الصفحة الحالية (اختياري)
   function activateCurrentPage(root) {
     const current = document.body.getAttribute("data-page");
     if (!current) return;
 
-    const activeEl = root.querySelector(`[data-page="${current}"]`);
-    if (activeEl) activeEl.classList.add("isActive");
+    root.querySelectorAll(".menu .link[data-page]").forEach((a) => {
+      if (a.getAttribute("data-page") === current) a.classList.add("active");
+    });
   }
 
   /* =========================
-     ✅ تهيئة مودل تسجيل دخول الإدارة
-     - يجب أن تكون العناصر موجودة داخل header.html
-     - يعمل بعد الحقن في كل الصفحات
+     ✅ Live DateTime (seconds + dates)
      ========================= */
-  function initAdminLoginModal(root) {
-    // حماية: لا تربط الأحداث مرتين
+
+  function formatLiveArabic(d) {
+    // ✅ وقت بالثواني
+    const t = new Intl.DateTimeFormat("ar-SA", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+      // timeZone: "Asia/Riyadh", // فعّلها إذا تبي تثبيت توقيت السعودية
+    }).format(d);
+
+    // ✅ التاريخ الميلادي + اسم اليوم
+    const g = new Intl.DateTimeFormat("ar-SA-u-ca-gregory", {
+      weekday: "long",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      // timeZone: "Asia/Riyadh",
+    }).format(d);
+
+    // ✅ التاريخ الهجري
+    const h = new Intl.DateTimeFormat("ar-SA-u-ca-islamic", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      // timeZone: "Asia/Riyadh",
+    }).format(d);
+
+    return `الوقت الآن ${t} — ${g} | هـ ${h}`;
+  }
+
+  function initLiveTime(root) {
+    const liveEl = root.querySelector("#liveTime");
+    if (!liveEl) return;
+
+    // حماية: لا تشغل أكثر من مؤقت
+    if (document.documentElement.dataset.thqafClockBound === "1") return;
+    document.documentElement.dataset.thqafClockBound = "1";
+
+    const update = () => {
+      liveEl.textContent = formatLiveArabic(new Date());
+    };
+
+    update();
+    // ✅ تحديث كل ثانية
+    const timer = setInterval(update, 1000);
+
+    // تنظيف بسيط لو الصفحة تغيّرت (اختياري)
+    window.addEventListener("beforeunload", () => clearInterval(timer));
+  }
+
+  /* =========================
+     ✅ Admin Modal (delegation)
+     ========================= */
+
+  function initAdminLoginModal() {
     if (document.documentElement.dataset.thqafLoginBound === "1") return;
     document.documentElement.dataset.thqafLoginBound = "1";
 
-    // ملاحظة: بما أن الهيدر يُحقن لاحقاً، نستخدم Delegation على document
-    document.addEventListener("click", (e) => {
-      const loginBtn = e.target.closest("#loginBtn");
-      if (!loginBtn) return;
-
+    function openModal() {
       const adminModal = document.getElementById("adminModal");
       if (!adminModal) return;
 
@@ -80,59 +133,58 @@
 
       const adminPhone = document.getElementById("adminPhone");
       if (adminPhone) setTimeout(() => adminPhone.focus(), 0);
-    });
+    }
 
-    // إغلاق المودل (زر إغلاق / إلغاء)
-    document.addEventListener("click", (e) => {
-      const closeBtn = e.target.closest("#closeAdminModal");
-      const cancelBtn = e.target.closest("#cancelAdminModal");
-      if (!closeBtn && !cancelBtn) return;
-
+    function closeModal() {
       const adminModal = document.getElementById("adminModal");
       if (!adminModal) return;
 
       adminModal.classList.remove("active");
       adminModal.setAttribute("aria-hidden", "true");
+    }
+
+    // فتح
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("#loginBtn")) return;
+      openModal();
+    });
+
+    // إغلاق (زر إغلاق / إلغاء)
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("#closeAdminModal") || e.target.closest("#cancelAdminModal")) {
+        closeModal();
+      }
     });
 
     // إغلاق عند الضغط على الخلفية
     document.addEventListener("click", (e) => {
       const adminModal = document.getElementById("adminModal");
       if (!adminModal || !adminModal.classList.contains("active")) return;
-
-      // الضغط على الخلفية نفسها (overlay)
-      if (e.target === adminModal) {
-        adminModal.classList.remove("active");
-        adminModal.setAttribute("aria-hidden", "true");
-      }
+      if (e.target === adminModal) closeModal();
     });
 
-    // إغلاق بالزر ESC
+    // إغلاق بالـ ESC
     document.addEventListener("keydown", (e) => {
       if (e.key !== "Escape") return;
-
       const adminModal = document.getElementById("adminModal");
       if (!adminModal || !adminModal.classList.contains("active")) return;
-
-      adminModal.classList.remove("active");
-      adminModal.setAttribute("aria-hidden", "true");
+      closeModal();
     });
   }
 
   /* =========================
-     تهيئة تفاعلات الهيدر
+     Header Interactions
      ========================= */
+
   function initHeader(headerHost) {
     const root = headerHost || document;
 
-    // حماية: لا تربط الأحداث مرتين
     if (root.dataset.thqafHeaderBound === "1") return;
     root.dataset.thqafHeaderBound = "1";
 
     const hamburger = root.querySelector("#hamburger");
     const menu = root.querySelector("#menu");
 
-    // 1) قائمة الجوال (☰)
     function closeMobileMenu() {
       if (!menu || !hamburger) return;
       menu.classList.remove("open");
@@ -147,25 +199,20 @@
         const open = menu.classList.toggle("open");
         hamburger.setAttribute("aria-expanded", String(open));
 
-        // عند فتح قائمة الجوال: اقفل أي دروب داون مفتوح
         if (open) closeAllDropdowns(root);
       });
     }
 
-    // 2) القوائم المنسدلة (Generic)
+    // Dropdowns
     const dropdowns = root.querySelectorAll(".dropdown");
-
     dropdowns.forEach((dd) => {
       const btn = dd.querySelector(".dropbtn");
       const ddMenu = dd.querySelector(".dropdown-menu");
-
       if (!btn || !ddMenu) return;
 
-      // تهيئة aria
       btn.setAttribute("aria-haspopup", "true");
       if (!btn.hasAttribute("aria-expanded")) btn.setAttribute("aria-expanded", "false");
 
-      // عند الضغط على زر الدروب داون
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -186,31 +233,31 @@
       ddMenu.addEventListener("click", (e) => e.stopPropagation());
     });
 
-    // 3) إغلاق عند الضغط خارج الهيدر
-    document.addEventListener("click", () => {
-      closeAllDropdowns(root);
-    });
+    // Close on outside click
+    document.addEventListener("click", () => closeAllDropdowns(root));
 
-    // 4) إغلاق بالزر ESC
+    // ESC closes dropdowns and mobile menu
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeAllDropdowns(root);
-        closeMobileMenu();
-      }
+      if (e.key !== "Escape") return;
+      closeAllDropdowns(root);
+      closeMobileMenu();
     });
 
-    // 5) منع روابط # فقط
+    // Prevent dummy links
     root.querySelectorAll('a[href="#"]').forEach((a) => {
       a.addEventListener("click", (e) => e.preventDefault());
     });
 
-    // 6) تفعيل رابط الصفحة الحالية (اختياري)
     activateCurrentPage(root);
+
+    // ✅ Live time after injection
+    initLiveTime(root);
   }
 
   /* =========================
-     تهيئة الفوتر
+     Footer
      ========================= */
+
   function initFooter(footerHost) {
     if (!footerHost) return;
     const yearEl = footerHost.querySelector("#year");
@@ -218,18 +265,18 @@
   }
 
   /* =========================
-     تشغيل الحقن عند تحميل الصفحة
+     Boot
      ========================= */
+
   (async () => {
-    const headerHost = await injectHTML("appHeader", "./header.html");
+    const headerHost = await injectHTML("appHeader", "header.html");
     if (headerHost) {
       initHeader(headerHost);
-
-      // ✅ مهم: تفعيل مودل تسجيل الدخول بعد حقن الهيدر
-      initAdminLoginModal(headerHost);
+      initAdminLoginModal();
     }
 
-    const footerHost = await injectHTML("appFooter", "./footer.html");
+    const footerHost = await injectHTML("appFooter", "footer.html");
     initFooter(footerHost);
   })();
+
 })();
